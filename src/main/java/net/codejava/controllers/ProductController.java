@@ -21,10 +21,7 @@ public class AppController {
 	
 	@RequestMapping("/")
 	public String viewHomePage(Model model) {
-		//List<Product> listProducts = service.listAll();
-		//List<Product> listProducts = service.findByMadeIn("California");
-		Product listProducts = service.findByName("Test Product");
-		service.deleteByName("Test Product");
+		List<Product> listProducts = service.listAll();
 		model.addAttribute("listProducts", listProducts);
 		
 		return "index";
