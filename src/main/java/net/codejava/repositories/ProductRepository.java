@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
+// repo does direct integration with database
+
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
     public List<Product> findByMadein(String madein);

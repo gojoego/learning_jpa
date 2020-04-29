@@ -1,10 +1,13 @@
 package net.codejava.repositories;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+// Java Spring will look for database that app is connected to and find table
+// if no table, will create automatically
 @Entity
 public class Customer {
 

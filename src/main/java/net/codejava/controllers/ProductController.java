@@ -13,13 +13,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+// MVC application model controller
+// mapping all similar to REST controller
+// returns String which refers to html file in resources folder
+
 @Controller
-public class AppController {
+@RequestMapping("/products")
+public class ProductController {
 
 	@Autowired
 	private ProductService service;
 	
-	@RequestMapping("/")
+	@RequestMapping()
 	public String viewHomePage(Model model) {
 		List<Product> listProducts = service.listAll();
 		model.addAttribute("listProducts", listProducts);
@@ -39,12 +44,12 @@ public class AppController {
 	public String saveProduct(@ModelAttribute("product") Product product) {
 		service.save(product);
 		
-		return "redirect:/";
+		return "redirect:/products";
 	}
 	
 	@RequestMapping("/edit/{id}")
 	public ModelAndView showEditProductPage(@PathVariable(name = "id") int id) {
-		ModelAndView mav = new ModelAndView("edit_product");
+		ModelAndView mav = new ModelAndView("edit_product.html");
 		Product product = service.get(id);
 		mav.addObject("product", product);
 		
@@ -54,6 +59,6 @@ public class AppController {
 	@RequestMapping("/delete/{id}")
 	public String deleteProduct(@PathVariable(name = "id") int id) {
 		service.delete(id);
-		return "redirect:/";		
+		return "redirect:/products";
 	}
 }
